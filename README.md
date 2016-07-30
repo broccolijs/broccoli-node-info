@@ -1,5 +1,7 @@
 # broccoli-node-info
 
+[![Build Status](https://travis-ci.org/broccolijs/broccoli-node-info.svg?branch=master)](https://travis-ci.org/broccolijs/broccoli-node-info)
+
 This is a low-level package used to communicate with Broccoli nodes (that is,
 plugin instances). It provides a thin wrapper around
 `node.__broccoliGetInfo__()`, normalizing different versions of the node API
