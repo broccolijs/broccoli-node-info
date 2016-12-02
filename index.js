@@ -18,6 +18,12 @@ var augmenters = [
     'sourceDirectories', function(nodeInfo) {
       nodeInfo.nodeType = 'transform'
     }
+  ], [
+    'needsCacheFlag', function(nodeInfo) {
+      if (nodeInfo.nodeType === 'transform') {
+        nodeInfo.needsCache = true
+      }
+    }
   ]
 ]
 

@@ -25,9 +25,13 @@ describe('transform nodes', function() {
         expect(nodeInfo.setup).to.be.a('function')
         expect(nodeInfo.getCallbackObject).to.be.a('function')
         expect(nodeInfo.persistentOutput).to.equal(false)
+        expect(nodeInfo.needsCache).to.equal(true)
         // Check that there are no extra keys
-        expect(nodeInfo).to.have.keys(['nodeType', 'name', 'annotation', 'instantiationStack',
-          'inputNodes', 'setup', 'getCallbackObject', 'persistentOutput'])
+        expect(nodeInfo).to.have.keys([
+          'nodeType', 'name', 'annotation', 'instantiationStack',
+          'inputNodes', 'setup', 'getCallbackObject', 'persistentOutput',
+          'needsCache'
+        ])
       })
     })
   })
