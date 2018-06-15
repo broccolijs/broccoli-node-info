@@ -15,8 +15,8 @@
   "homepage": "https://github.com/broccolijs/broccoli-node-info",
   "dependencies": {},
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^2.5.3",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
     "mocha-jshint": "^2.3.1",
     "multidep": "^2.0.1"
   },
