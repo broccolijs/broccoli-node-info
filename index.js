@@ -24,6 +24,12 @@ var augmenters = [
         nodeInfo.needsCache = true
       }
     }
+  ], [
+    'memoizeFlag', function(nodeInfo) {
+      if (nodeInfo.nodeType === 'transform') {
+        nodeInfo.memoize = false
+      }
+    }
   ]
 ]
 
