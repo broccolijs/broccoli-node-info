@@ -24,6 +24,12 @@ var augmenters = [
         nodeInfo.needsCache = true
       }
     }
+  ], [
+    'volatileFlag', function(nodeInfo) {
+      if (nodeInfo.nodeType === 'transform') {
+        nodeInfo.volatile = false
+      }
+    }
   ]
 ]
 

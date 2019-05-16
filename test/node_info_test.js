@@ -30,7 +30,7 @@ describe('transform nodes', function() {
         expect(nodeInfo).to.have.keys([
           'nodeType', 'name', 'annotation', 'instantiationStack',
           'inputNodes', 'setup', 'getCallbackObject', 'persistentOutput',
-          'needsCache'
+          'needsCache', 'volatile'
         ])
       })
     })
