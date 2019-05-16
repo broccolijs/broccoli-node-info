@@ -25,9 +25,9 @@ var augmenters = [
       }
     }
   ], [
-    'memoizeFlag', function(nodeInfo) {
+    'volatileFlag', function(nodeInfo) {
       if (nodeInfo.nodeType === 'transform') {
-        nodeInfo.memoize = false
+        nodeInfo.volatile = false
       }
     }
   ]
