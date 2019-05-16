@@ -21,7 +21,7 @@
     "multidep": "^2.0.1"
   },
   "engines": {
-    "node": ">= 0.10.0"
+    "node": "8.* || >= 10.*"
   },
   "scripts": {
     "pretest": "multidep test/multidep.json",
