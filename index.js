@@ -30,6 +30,12 @@ var augmenters = [
         nodeInfo.volatile = false
       }
     }
+  ], [
+    'trackInputChangesFlag', function(nodeInfo) {
+      if (nodeInfo.nodeType === 'transform') {
+        nodeInfo.trackInputChanges = false
+      }
+    }
   ]
 ]
 
