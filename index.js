@@ -36,6 +36,12 @@ var augmenters = [
         nodeInfo.trackInputChanges = false
       }
     }
+  ], [
+    'fsFacadeFlag', function (nodeInfo) {
+      if (nodeInfo.nodeType === 'transform') {
+        nodeInfo.fsFacade = false
+      }
+    }
   ]
 ]
 

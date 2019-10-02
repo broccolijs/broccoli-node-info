@@ -26,11 +26,12 @@ describe('transform nodes', function() {
         expect(nodeInfo.getCallbackObject).to.be.a('function')
         expect(nodeInfo.persistentOutput).to.equal(false)
         expect(nodeInfo.needsCache).to.equal(true)
+        expect(nodeInfo.fsFacade).to.equal(false)
         // Check that there are no extra keys
         expect(nodeInfo).to.have.keys([
           'nodeType', 'name', 'annotation', 'instantiationStack',
           'inputNodes', 'setup', 'getCallbackObject', 'persistentOutput',
-          'needsCache', 'volatile', 'trackInputChanges'
+          'needsCache', 'volatile', 'trackInputChanges', 'fsFacade'
         ])
       })
     })
