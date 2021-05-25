@@ -2,10 +2,29 @@
 
 var broccoliNodeInfo = require('..')
 var chai = require('chai'), expect = chai.expect
-var multidepRequire = require('multidep')('test/multidep.json')
+
+var versions = {
+  'broccoli-plugin': {
+    '1.0.0': 'broccoli-plugin-1-0-0',
+    '1.1.0': 'broccoli-plugin-1-1-0',
+    '1.2.0': 'broccoli-plugin-1-2-0',
+    '1.3.0': 'broccoli-plugin-1-3-0',
+  },
+  'broccoli-source': {
+    '1.1.0': 'broccoli-source-1-1-0'
+  }
+};
+
+function forEachVersion(packageName, callback) {
+  for (var versionNumber in versions[packageName]) {
+    var aliasedPackageName = versions[packageName][versionNumber];
+    var entryPoint = require(aliasedPackageName);
+    callback(versionNumber, entryPoint);
+  }
+}
 
 describe('transform nodes', function() {
-  multidepRequire.forEachVersion('broccoli-plugin', function(version, Plugin) {
+  forEachVersion('broccoli-plugin', function(version, Plugin) {
     describe('broccoli-plugin ' + version, function() {
       NoopPlugin.prototype = Object.create(Plugin.prototype)
       NoopPlugin.prototype.constructor = NoopPlugin
@@ -39,7 +58,7 @@ describe('transform nodes', function() {
 })
 
 describe('source nodes', function() {
-  multidepRequire.forEachVersion('broccoli-source', function(version, broccoliSource) {
+  forEachVersion('broccoli-source', function(version, broccoliSource) {
     describe('broccoli-source ' + version, function() {
       var classNames = { 'WatchedDir': true, 'UnwatchedDir': false }
       Object.keys(classNames).forEach(function(className) {
