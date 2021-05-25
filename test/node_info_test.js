@@ -46,6 +46,7 @@ describe('transform nodes', function() {
         expect(nodeInfo.persistentOutput).to.equal(false)
         expect(nodeInfo.needsCache).to.equal(true)
         expect(nodeInfo.fsFacade).to.equal(false)
+
         // Check that there are no extra keys
         expect(nodeInfo).to.have.keys([
           'nodeType', 'name', 'annotation', 'instantiationStack',
@@ -53,8 +54,39 @@ describe('transform nodes', function() {
           'needsCache', 'volatile', 'trackInputChanges', 'fsFacade'
         ])
       })
+
+      it('does not eagerly evaluate instantiationStack', function() {
+        var plugin = new NoopPlugin();
+        plugin.__broccoliGetInfo__ = function(features) {
+          var originalNodeInfo = NoopPlugin.prototype.__broccoliGetInfo__.call(this, features);
+
+          var nodeInfo = {}
+          for (var key in originalNodeInfo) {
+            nodeInfo[key] = originalNodeInfo[key]
+          }
+
+          Object.defineProperty(nodeInfo, 'instantiationStack', {
+            enumerable: true,
+            configurable: true,
+            get: function() {
+              throw new Error('Do not eagerly evaluate instantiationStack!!!!');
+            }
+          });
+
+          return nodeInfo;
+        };
+
+        // should not throw here at all
+        var nodeInfo = broccoliNodeInfo.getNodeInfo(plugin);
+
+        // ensure that we *do* throw the error if we actually access
+        expect(function () {
+          nodeInfo.instantiationStack;
+        }).throws(/Do not eagerly evaluate instantiationStack/);
+      });
     })
   })
+
 })
 
 describe('source nodes', function() {
