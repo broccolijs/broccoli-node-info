@@ -87,8 +87,18 @@ function getNodeInfo(node) {
   //
   // We don't to use prototypal inheritance (Object.create) because some test
   // code can get confused if hasOwnProperty isn't true.
-  var nodeInfo = {}
+  var nodeInfo = {
+    // lazily return the original instantiation stack
+    // this avoids eagerly accessing the stacks, which is costly
+    get instantiationStack() {
+      return originalNodeInfo.instantiationStack;
+    }
+  };
   for (var key in originalNodeInfo) {
+    if (key === 'instantiationStack') {
+      continue;
+    }
+
     nodeInfo[key] = originalNodeInfo[key]
   }
 
