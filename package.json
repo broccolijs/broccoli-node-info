@@ -16,7 +16,7 @@
   "dependencies": {},
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^2.5.3",
+    "mocha": "^10.2.0",
     "mocha-jshint": "^2.3.1",
     "broccoli-plugin-1-0-0": "npm:broccoli-plugin@1.0.0",
     "broccoli-plugin-1-1-0": "npm:broccoli-plugin@1.1.0",
